@@ -12,6 +12,11 @@ export default createGlobalStyle`
     body {
       font-family: 'Netflix Sans', sans-serif;
       background-color: var(--secondary);
+      color: var(--text1);
+    }
+
+    a {
+      text-decoration: none;
     }
 
   :root {

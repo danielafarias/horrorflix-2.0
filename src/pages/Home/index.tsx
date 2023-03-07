@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
+import { Link } from 'react-router-dom'
 import api from "../../services/api";
+import { Container } from "./styles";
+import { AiOutlineInfoCircle } from "react-icons/ai";
 
 interface MovieType {
     adult: boolean;
@@ -36,12 +39,23 @@ export default function Home() {
                 }
             });
     
-            setMovies(response.data.results);
+            setMovies(response.data.results.slice(0, 10));
         } catch {};
     }
 
     return (
-        <>
-        </>
+        <Container>
+            {
+                movies.map(movie => {
+                    return (
+                        <article key={movie.id}>
+                            <h3>{movie.title}</h3>
+                            <img src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`} alt={`${movie.title} Cover`}/>
+                            <Link to={`/filme/${movie.id}`}><AiOutlineInfoCircle />Mais informações</Link>
+                        </article>
+                    )
+                })
+            }
+        </Container>
     );
 }
