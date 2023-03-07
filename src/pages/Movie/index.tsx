@@ -1,4 +1,4 @@
-export function Movie() {
+export default function Movie() {
     return (
         <>
         </>
