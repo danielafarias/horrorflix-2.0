@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import api from "../../services/api";
 import { Container } from "./styles";
 import { AiOutlineInfoCircle } from "react-icons/ai";
+import Slider from "../../components/Slider";
 
 interface MovieType {
     adult: boolean;
@@ -45,7 +46,7 @@ export default function Home() {
 
     return (
         <Container>
-                  <h1>HOME</h1>
+            <Slider />
             {
                 movies.map(movie => {
                     return (
