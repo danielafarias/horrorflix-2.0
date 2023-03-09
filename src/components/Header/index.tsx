@@ -1,7 +1,7 @@
 import { Container } from "./styles";
 import { Link } from 'react-router-dom'
 
-export default function Header() {
+function Header() {
     return (
         <Container>
             <Link className="logo" to="/">Horrorflix</Link>
@@ -9,3 +9,5 @@ export default function Header() {
         </Container>
     );
 }
+
+export default Header;

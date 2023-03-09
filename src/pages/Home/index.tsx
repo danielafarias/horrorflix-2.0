@@ -45,6 +45,7 @@ export default function Home() {
 
     return (
         <Container>
+                  <h1>HOME</h1>
             {
                 movies.map(movie => {
                     return (
