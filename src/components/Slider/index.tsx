@@ -1,7 +1,7 @@
 import { Container } from "./styles";
 import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
-import { TiArrowLeftThick, TiArrowRightThick } from "react-icons/ti";
+import { MdArrowBackIosNew, MdArrowForwardIos } from "react-icons/md";
 
 interface SliderArrayType {
     title: string;
@@ -17,7 +17,6 @@ export default function Slider({ sliderArray }: SliderProps) {
   //TODO: tirar os ts-ignore
   const [width, setWidth] = useState(0);
   const dragSlider = useRef();
-//   const sliderArray = [1, 2, 3, 4, 5, 6];
 
   function handleScroll(direction: string) {
     const { current } = dragSlider;
@@ -39,16 +38,14 @@ export default function Slider({ sliderArray }: SliderProps) {
 
   return (
     <Container>
-      <div className="slider_box">
         <div className="slider_button">
-          {/* <p>Clique aqui</p> */}
           <div className="slider_arrow_1">
-            <div
+            <button
               className="slider_arrow_icon"
               onClick={() => handleScroll("left")}
             >
-              <TiArrowLeftThick />
-            </div>
+              <MdArrowBackIosNew size={30} />
+            </button>
           </div>
 
           {/* @ts-ignore */}
@@ -63,9 +60,6 @@ export default function Slider({ sliderArray }: SliderProps) {
                 <motion.div className="slider-card">
                   <div className="slider-card-box">
                     <motion.div className="slider-card-image">
-                      {/*TODO width: 500
-                                            height: 300
-                                            objectFit: cover */}
                       <img src={`https://image.tmdb.org/t/p/original/${obj.imagePath}`} className="slider-card-img" alt={obj.title} />
                     </motion.div>
                     <div className="slider-card-title">
@@ -82,15 +76,14 @@ export default function Slider({ sliderArray }: SliderProps) {
             </motion.div>
           </motion.div>
           <div className="slider_arrow_2">
-            <div
+            <button
               className="slider_arrow_icon"
               onClick={() => handleScroll("right")}
             >
-              <TiArrowRightThick />
-            </div>
+              <MdArrowForwardIos size={30} />
+            </button>
           </div>
         </div>
-      </div>
     </Container>
   );
 }

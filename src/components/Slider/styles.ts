@@ -1,10 +1,7 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-    width: 100%;
-
-    .slider_box {
-        width: 80%;
+        width: 100%;
         margin: 0 auto;
         padding: 0 -1rem 8rem 0;
 
@@ -12,7 +9,7 @@ export const Container = styled.div`
             font-size: 3rem;
             line-height: 0;
         }
-    }
+   
 
     .slider_button {
         display: flex;
@@ -20,27 +17,23 @@ export const Container = styled.div`
         align-items: center;
     }
 
-    .slider_arrow {
-        display: flex;
-        align-items: center;
-        gap: 2rem;
-        font-size: 2rem;
-    }
-
     .slider_arrow_icon {
-        /* TODO: CHANGE COLOR */
-        border: 1px solid black;
+        border: none;
         padding: 1rem;
+        margin: 0.5rem;
         display: flex;
         align-items: center;
         border-radius: 50%;
         transition: all .3s ease-in;
         cursor: pointer;
+        background-color: transparent;
+        color: var(--text2);
 
         &:hover {
-             /* TODO: CHANGE COLOR */
-            background-color: red;
-            color: white;
+            transition: all .3s;
+            background-color: var(--text2);
+            opacity: 0.1; 
+            color: var(--secondary);
             box-shadow: 0 1px 2px black;
         }
     }

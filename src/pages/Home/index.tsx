@@ -59,17 +59,6 @@ export default function Home() {
     return (
         <Container>
             <Slider sliderArray={movies}/>
-            {/* {
-                movies.map(movie => {
-                    return (
-                        <article key={movie.id}>
-                            <h3>{movie.title}</h3>
-                            <img src={`https://image.tmdb.org/t/p/original/${movie.imagePath}`} alt={`${movie.title} Cover`}/>
-                            <Link to={`/filme/${movie.id}`}><AiOutlineInfoCircle />Mais informações</Link>
-                        </article>
-                    )
-                })
-            } */}
         </Container>
     );
 }
