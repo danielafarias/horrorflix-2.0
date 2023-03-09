@@ -79,6 +79,11 @@ export const Container = styled.div`
 
     .slider-card-img {
         border-radius: 2rem;
+        height: 450px;
+        max-width: 300px;
+        object-fit: cover;
+        mask-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));
+        -webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));
     }
 
     .slider-card-title {
@@ -93,15 +98,9 @@ export const Container = styled.div`
             line-height: .5;
             font-weight: 800;
         }
-
-        .slider_like {
-            display: flex;
-            align-items: center;
-            gap: .5rem;
-        }
     }
 
-    .slider-card-price {
+    .slider-card-actions {
         display: flex;
         justify-content: space-between;
         padding-inline: 2rem;

@@ -22,8 +22,14 @@ interface MovieType {
     vote_count: number;
 }
 
+interface SliderArrayType {
+    title: string;
+    imagePath: string;
+    id: number;
+}
+
 export default function Home() {
-    const [movies, setMovies] = useState<MovieType[]>([]);
+    const [movies, setMovies] = useState<SliderArrayType[]>([]);
 
     useEffect(() => {
         handleMovies();
@@ -39,25 +45,31 @@ export default function Home() {
                     page: 1,
                 }
             });
+
+            const formatted = response.data.results.map((res: MovieType) => ({
+                id: res.id,
+                title: res.title,
+                imagePath: res.poster_path
+            }))
     
-            setMovies(response.data.results.slice(0, 10));
+            setMovies(formatted);
         } catch {};
     }
 
     return (
         <Container>
-            <Slider />
-            {
+            <Slider sliderArray={movies}/>
+            {/* {
                 movies.map(movie => {
                     return (
                         <article key={movie.id}>
                             <h3>{movie.title}</h3>
-                            <img src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`} alt={`${movie.title} Cover`}/>
+                            <img src={`https://image.tmdb.org/t/p/original/${movie.imagePath}`} alt={`${movie.title} Cover`}/>
                             <Link to={`/filme/${movie.id}`}><AiOutlineInfoCircle />Mais informações</Link>
                         </article>
                     )
                 })
-            }
+            } */}
         </Container>
     );
 }
