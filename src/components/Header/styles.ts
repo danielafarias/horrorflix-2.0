@@ -5,6 +5,7 @@ export const Container = styled.div`
     justify-content: space-between;
     align-items: center;
     padding: 1rem 2rem 1rem 2rem;
+    flex-wrap: wrap;
 
     .logo {
         font-family: 'Creepster', cursive;
@@ -14,10 +15,10 @@ export const Container = styled.div`
 
     .list {
         color: var(--text2);
-        font-size: 1.2rem;
 
         &:hover {
-            color: var(--text1);
+            transition: color 0.5s;
+            color: var(--primary);
         }
     }
 `;

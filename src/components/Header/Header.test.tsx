@@ -26,11 +26,12 @@ describe("Header", () => {
     render(<Header />);
 
     const listAnchor = screen.getByTestId("list");
+    const favoriteIcon = screen.getByTestId("favorite-icon")
 
     expect(listAnchor.getAttribute("href")).toBe("/lista");
     expect(listAnchor.getAttribute("class")).toBe("list");
 
-    expect(listAnchor.textContent).toBe("Minha lista");
+    expect(favoriteIcon).toBeInTheDocument();
   });
 
   test("renders logo with correct style", async () => {
@@ -48,7 +49,6 @@ describe("Header", () => {
 
     const listAnchor = screen.getByTestId("list");
 
-    expect(listAnchor).toHaveStyle("font-size: 1.2rem");
     expect(listAnchor).toHaveStyle("color: var(--text2)");
     expect(listAnchor).not.toHaveStyle("font-family: 'Creepster',cursive");
   });
