@@ -1,8 +1,11 @@
-import { Container } from "./styles";
 import { useState, useRef, useEffect } from "react";
-import { motion } from "framer-motion";
 import { MdArrowBackIosNew, MdArrowForwardIos } from "react-icons/md";
+import { AiOutlineInfoCircle } from "react-icons/ai";
+import { FaHeart } from "react-icons/fa";
 
+import { motion } from "framer-motion";
+
+import { Container } from "./styles";
 interface SliderArrayType {
     title: string;
     imagePath: string;
@@ -67,8 +70,8 @@ export default function Slider({ sliderArray }: SliderProps) {
                     </div>
 
                     <div className="slider-card-actions">
-                      <button>Mais Informações</button>
-                      <button>♥</button>
+                      <button className="info-btn"><AiOutlineInfoCircle size={20} />Informações</button>
+                      <button className="like-btn"><FaHeart size={25} /></button>
                     </div>
                   </div>
                 </motion.div>

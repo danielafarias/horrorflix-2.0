@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
-import { Link } from 'react-router-dom'
 import api from "../../services/api";
 import { Container } from "./styles";
-import { AiOutlineInfoCircle } from "react-icons/ai";
 import Slider from "../../components/Slider";
 
 interface MovieType {
