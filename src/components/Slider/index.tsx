@@ -62,7 +62,7 @@ export default function Slider({ sliderArray }: SliderProps) {
             drag="x"
             dragConstraints={{ right: 0, left: -width }}
           >
-            {sliderArray.slice(0, 6).map((obj) => (
+            {sliderArray.map((obj) => (
               <motion.div className="slider-card">
                 <div className="slider-card-box">
                   <motion.div className="slider-card-image">

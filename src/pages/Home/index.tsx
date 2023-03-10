@@ -56,7 +56,9 @@ export default function Home() {
 
     return (
         <Container>
-            <Slider sliderArray={movies}/>
+            <Slider sliderArray={movies.slice(0, 6)}/>
+            {(movies.length > 6 && movies.length >= 12) && <Slider sliderArray={movies.slice(6, 12)}/>}
+            {(movies.length > 12 && movies.length >= 18) && <Slider sliderArray={movies.slice(12, 18)}/>}
         </Container>
     );
 }
