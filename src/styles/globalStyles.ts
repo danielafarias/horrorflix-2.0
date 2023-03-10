@@ -7,6 +7,22 @@ export default createGlobalStyle`
         -webkit-box-sizing: content-box;
         -moz-box-sizing: content-box;
         box-sizing: border-box;
+
+      ::-webkit-scrollbar {
+        width: 10px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: var(--secondary); 
+      }
+      
+      ::-webkit-scrollbar-thumb {
+        background: #888; 
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: #555; 
+      }
     }
 
     body {
