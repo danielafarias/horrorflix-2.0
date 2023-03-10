@@ -49,13 +49,14 @@ export default function Slider({ sliderArray }: SliderProps) {
         <div className="slider_arrow_1">
           <button
             className="slider_arrow_icon"
+            data-testid="left-btn"
             onClick={() => handleScroll("left")}
           >
             <MdArrowBackIosNew size={30} />
           </button>
         </div>
 
-        <motion.div className="slider_items" ref={dragSlider}>
+        <motion.div className="slider_items" ref={dragSlider} data-testid="motion-container">
           <motion.div
             className="slider_item"
             ref={dragSlider}
@@ -63,7 +64,7 @@ export default function Slider({ sliderArray }: SliderProps) {
             dragConstraints={{ right: 0, left: -width }}
           >
             {sliderArray.map((obj) => (
-              <motion.div className="slider-card">
+              <motion.div className="slider-card" data-testid={`motion-card-${obj.id}`}>
                 <div className="slider-card-box">
                   <motion.div className="slider-card-image">
                     <img
@@ -77,11 +78,11 @@ export default function Slider({ sliderArray }: SliderProps) {
                   </div>
 
                   <div className="slider-card-actions">
-                    <button className="info-btn">
+                    <button className="info-btn" data-testid={`info-btn-${obj.id}`}>
                       <AiOutlineInfoCircle size={20} />
                       Informações
                     </button>
-                    <button className="like-btn">
+                    <button className="like-btn" data-testid={`like-btn-${obj.id}`}>
                       <FaHeart size={25} />
                     </button>
                   </div>
@@ -93,6 +94,7 @@ export default function Slider({ sliderArray }: SliderProps) {
         <div className="slider_arrow_2">
           <button
             className="slider_arrow_icon"
+            data-testid="right-btn"
             onClick={() => handleScroll("right")}
           >
             <MdArrowForwardIos size={30} />

@@ -99,6 +99,7 @@ export const Container = styled.div`
     p {
       font-size: 1.2rem;
       line-height: 1;
+      color: var(--text1);
       font-weight: 800;
       text-overflow: ellipsis;
       white-space: nowrap;
