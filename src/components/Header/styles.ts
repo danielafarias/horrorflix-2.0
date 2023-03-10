@@ -4,7 +4,7 @@ export const Container = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 2rem 1rem 2rem;
+    padding: 1rem 5rem 1rem 5rem;
     flex-wrap: wrap;
 
     .logo {
