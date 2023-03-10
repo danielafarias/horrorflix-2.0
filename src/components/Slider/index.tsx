@@ -41,7 +41,7 @@ export default function Slider({ sliderArray }: SliderProps) {
         setWidth(current.scrollWidth - current.offsetWidth);
       }
     }
-  }, []);
+  }, [dragSlider, sliderArray]);
 
   return (
     <Container>

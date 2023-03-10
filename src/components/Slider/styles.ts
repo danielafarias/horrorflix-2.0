@@ -206,12 +206,6 @@ export const Container = styled.div`
       }
     }
 
-    .slider_item {
-      overflow: auto;
-      grid-template-columns: repeat(6, 95%);
-      padding: 4rem 0;
-    }
-
     .slider_arrow_icon {
       padding: 0.5rem;
     }
