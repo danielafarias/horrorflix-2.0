@@ -70,10 +70,16 @@ describe("Slider", () => {
 
     expect(title).toBeInTheDocument();
 
-    const infoButton = screen.getByTestId("info-btn-631842");
+    const infoButton = screen.getAllByTestId("info-btn");
     const likeButton = screen.getByTestId("like-btn-631842");
 
-    expect(infoButton).toBeInTheDocument();
+    expect(infoButton[0]).toBeInTheDocument();
+    expect(infoButton[1]).toBeInTheDocument();
+    expect(infoButton[2]).toBeInTheDocument();
+    expect(infoButton[3]).toBeInTheDocument();
+    expect(infoButton[4]).toBeInTheDocument();
+    expect(infoButton[5]).toBeInTheDocument();
+
     expect(likeButton).toBeInTheDocument();
   });
 

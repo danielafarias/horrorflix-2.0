@@ -6,6 +6,7 @@ import { FaHeart } from "react-icons/fa";
 import { motion } from "framer-motion";
 
 import { Container } from "./styles";
+import { Link } from "react-router-dom";
 interface SliderArrayType {
   title: string;
   imagePath: string;
@@ -64,7 +65,7 @@ export default function Slider({ sliderArray }: SliderProps) {
             dragConstraints={{ right: 0, left: -width }}
           >
             {sliderArray.map((obj) => (
-              <motion.div className="slider-card" data-testid={`motion-card-${obj.id}`}>
+              <motion.div className="slider-card" data-testid={`motion-card-${obj.id}`} key={obj.id}>
                 <div className="slider-card-box">
                   <motion.div className="slider-card-image">
                     <img
@@ -78,10 +79,10 @@ export default function Slider({ sliderArray }: SliderProps) {
                   </div>
 
                   <div className="slider-card-actions">
-                    <button className="info-btn" data-testid={`info-btn-${obj.id}`}>
+                    <Link to={`/filme/${obj.id}`} className="info-btn">
                       <AiOutlineInfoCircle size={20} />
                       Informações
-                    </button>
+                    </Link>
                     <button className="like-btn" data-testid={`like-btn-${obj.id}`}>
                       <FaHeart size={25} />
                     </button>
