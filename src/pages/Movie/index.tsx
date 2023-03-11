@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import Loader from "../../components/Loader";
+import Vote from "../../components/Vote";
 import api from "../../services/api";
 import { Container } from "./styles";
 
@@ -89,12 +90,15 @@ export default function Movie() {
             <h3>Sinopse</h3>
             <p>{movie.overview}</p>
           </article>
-          <strong>
-            Avaliação: <span>{movie.vote_average} / 10</span>
-          </strong>
+          <div className="movie-vote">
+            <h3>Avaliação:</h3>
+            <Vote average={movie.vote_average} />
+          </div>
           <div className="movie-buttons">
             <button className="save-btn">Salvar</button>
-            <Link className="trailer-btn" to="#">Trailer</Link>
+            <Link className="trailer-btn" to="#">
+              Trailer
+            </Link>
           </div>
         </div>
         <img

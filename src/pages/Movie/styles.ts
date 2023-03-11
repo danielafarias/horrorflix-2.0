@@ -22,10 +22,8 @@ export const Container = styled.div<ContainerProps>`
       padding: 2rem;
       height: 80vh;
 
-      .movie-sinopse {
-        h3 {
-          margin-bottom: 1rem;
-        }
+      h3 {
+        margin-bottom: 1rem;
       }
 
       .movie-buttons {
