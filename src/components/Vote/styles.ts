@@ -20,6 +20,14 @@ export const Container = styled.div`
     font-weight: bold;
     position: absolute;
     z-index: 1;
+
+    div {
+      display: flex;
+      svg {
+        color: var(--secondary);
+        margin-right: 0.5rem;
+      }
+    }
   }
   &:hover {
     .tooltiptext {

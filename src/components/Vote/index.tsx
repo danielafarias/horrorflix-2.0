@@ -1,5 +1,10 @@
 import { Container } from "./styles";
-import { BsDropletFill, BsDropletHalf, BsDroplet } from "react-icons/bs";
+import {
+  BsDropletFill,
+  BsDropletHalf,
+  BsDroplet,
+  BsFillStarFill,
+} from "react-icons/bs";
 
 interface VoteProps {
   average: number;
@@ -25,7 +30,12 @@ function Vote({ average }: VoteProps) {
         {fill}
         {half}
         {empty}
-        <span className="tooltiptext">{`${a}.${b}`.replace(".", ",")}</span>
+        <span className="tooltiptext">
+          <div>
+            <BsFillStarFill size={15} />
+            {`${a}.${b}`.replace(".", ",")}
+          </div>
+        </span>
       </Container>
     );
   }
@@ -37,7 +47,12 @@ function Vote({ average }: VoteProps) {
   return (
     <Container>
       {divs}
-      <span className="tooltiptext">{`${a}.${b}`.replace(".", ",")}</span>
+      <span className="tooltiptext">
+        <div>
+          <BsFillStarFill size={15} />
+          {`${a}.${b}`.replace(".", ",")}
+        </div>
+      </span>
     </Container>
   );
 }
