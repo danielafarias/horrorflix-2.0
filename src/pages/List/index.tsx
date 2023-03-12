@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import Loader from "../../components/Loader";
 import Slider from "../../components/Slider";
-import { Container } from "./styles";
-
+import { Container, EmptyContainer } from "./styles";
+import loader from "../../assets/img/loader.gif";
 interface MovieType {
   title: string;
   imagePath: string;
@@ -29,10 +29,23 @@ export default function List() {
     return <Loader />;
   }
 
+  if (loading === false && movies.length === 0) {
+    return (
+      <EmptyContainer>
+          <span>Lista vazia</span>
+          <img src={loader} alt="Empty" />
+      </EmptyContainer>
+    );
+  }
+
   return (
     <Container>
       <h2>Minha lista</h2>
-      <Slider sliderArray={movies.slice(0, 6)} hasSaved={true} setLoading={setLoading}/>
+      <Slider
+        sliderArray={movies.slice(0, 6)}
+        hasSaved={true}
+        setLoading={setLoading}
+      />
       {movies.length > 6 && movies.length >= 12 && (
         <Slider sliderArray={movies.slice(6, 12)} hasSaved={true} />
       )}
