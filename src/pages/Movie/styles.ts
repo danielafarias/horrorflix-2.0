@@ -73,6 +73,7 @@ export const Container = styled.div<ContainerProps>`
   }
 
   @media screen and (max-width: 35em) {
+    font-size: 0.7rem;
     img {
       display: none;
     }
