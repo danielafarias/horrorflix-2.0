@@ -5,6 +5,7 @@ import Loader from "../../components/Loader";
 import Vote from "../../components/Vote";
 import api from "../../services/api";
 import { Container } from "./styles";
+import { toast } from "react-toastify";
 
 interface MovieType {
   adult: boolean;
@@ -91,14 +92,14 @@ export default function Movie() {
     const hasMovie = favoriteList.some((item: MovieType) => item.id === newMovie.id);
 
     if (hasMovie) {
-      alert("Já existe");
+      toast.warning(`${newMovie.title} já está em sua lista`);
       return;
     }
 
     favoriteList.push(newMovie);
     localStorage.setItem("@horrorflix", JSON.stringify(favoriteList));
 
-    alert("Filme salvo")
+    toast.success(`${newMovie.title} foi adicionado à sua lista`);
   }
 
   if (loading) {

@@ -3,7 +3,7 @@ import { MdArrowBackIosNew, MdArrowForwardIos } from "react-icons/md";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 import { FaHeart } from "react-icons/fa";
 import { CgClose } from "react-icons/cg";
-
+import { toast } from "react-toastify";
 import { motion } from "framer-motion";
 
 import { Container } from "./styles";
@@ -56,28 +56,28 @@ export default function Slider({ sliderArray, hasSaved = false, setLoading }: Sl
     const hasMovie = favoriteList.some((item: SliderArrayType) => item.id === movie.id);
 
     if (hasMovie) {
-      alert("Já existe");
+      toast.warning(`${movie.title} já está em sua lista`);
       return;
     }
 
     favoriteList.push(movie);
     localStorage.setItem("@horrorflix", JSON.stringify(favoriteList));
 
-    alert("Filme salvo")
+    toast.success(`${movie.title} foi adicionado à sua lista`);
   }
 
-  function handleDelete(id: number) {
+  function handleDelete(movie: SliderArrayType) {
     setLoading && setLoading(true);
 
     const localList = localStorage.getItem("@horrorflix");
 
     let favoriteList = (localList !== null && localList !== undefined) ? JSON.parse(localList) : [];
 
-    const deletedList = favoriteList.filter((item: SliderArrayType) => item.id !== id);
+    const deletedList = favoriteList.filter((item: SliderArrayType) => item.id !== movie.id);
+
+    toast.success(`${movie.title} foi removido da sua lista`);
 
     localStorage.setItem("@horrorflix", JSON.stringify(deletedList));
-
-    alert("Filme excluído");
   }
 
   return (
@@ -121,7 +121,7 @@ export default function Slider({ sliderArray, hasSaved = false, setLoading }: Sl
                     </Link>
                     {
                       hasSaved ? (
-                      <button className="delete-btn" data-testid={`delete-btn-${obj.id}`} onClick={() => handleDelete(obj.id)}>
+                      <button className="delete-btn" data-testid={`delete-btn-${obj.id}`} onClick={() => handleDelete(obj)}>
                         <CgClose size={25} />
                       </button>
                       ) : (
