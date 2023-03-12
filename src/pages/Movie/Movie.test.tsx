@@ -1,7 +1,9 @@
-import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router";
-import Movie from ".";
+
+import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+
+import Movie from ".";
 
 jest.mock("react-router-dom", () => ({
   ...jest.requireActual("react-router-dom"),
@@ -112,7 +114,6 @@ describe("Movie", () => {
     expect(trailerButton).toHaveStyle("font-size: 1.5rem");
     expect(trailerButton).toHaveStyle("max-width: 6rem");
 
- 
     expect(saveButton).toHaveStyle("margin-right: 1rem");
     expect(saveButton).toHaveStyle("display: flex");
     expect(saveButton).toHaveStyle("align-items: center");
@@ -125,7 +126,7 @@ describe("Movie", () => {
     expect(saveButton).toHaveStyle("max-width: 6rem");
 
     userEvent.hover(trailerButton);
-    
+
     expect(trailerButton).toHaveStyle("color: var(--text2)");
   });
 
@@ -138,6 +139,8 @@ describe("Movie", () => {
 
     const container = await screen.findByTestId("movie-container");
 
-    expect(container).toHaveStyle("background-image: url(https://image.tmdb.org/t/p/original//zWDMQX0sPaW2u0N2pJaYA8bVVaJ.jpg)");
+    expect(container).toHaveStyle(
+      "background-image: url(https://image.tmdb.org/t/p/original//zWDMQX0sPaW2u0N2pJaYA8bVVaJ.jpg)"
+    );
   });
 });

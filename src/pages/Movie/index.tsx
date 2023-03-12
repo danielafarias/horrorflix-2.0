@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router";
 import { Link } from "react-router-dom";
+import { useNavigate, useParams } from "react-router";
+import { toast } from "react-toastify";
+
 import Loader from "../../components/Loader";
 import Vote from "../../components/Vote";
-import api from "../../services/api";
+
 import { Container } from "./styles";
-import { toast } from "react-toastify";
+
+import api from "../../services/api";
 
 interface MovieType {
   adult: boolean;
@@ -87,9 +90,14 @@ export default function Movie() {
 
     const localList = localStorage.getItem("@horrorflix");
 
-    let favoriteList = (localList !== null && localList !== undefined) ? JSON.parse(localList) : [];
+    let favoriteList =
+      localList !== null && localList !== undefined
+        ? JSON.parse(localList)
+        : [];
 
-    const hasMovie = favoriteList.some((item: MovieType) => item.id === newMovie.id);
+    const hasMovie = favoriteList.some(
+      (item: MovieType) => item.id === newMovie.id
+    );
 
     if (hasMovie) {
       toast.warning(`${newMovie.title} já está em sua lista`);
@@ -123,8 +131,20 @@ export default function Movie() {
             <Vote average={movie.vote_average} />
           </div>
           <div className="movie-buttons">
-            <button className="save-btn" data-testid="save-btn" onClick={() => handleSave(movie)}>Salvar</button>
-            <Link className="trailer-btn" data-testid="trailer-btn" to={`https://www.youtube.com/results?search_query=${movie.title}`} target="_blank" rel="external">
+            <button
+              className="save-btn"
+              data-testid="save-btn"
+              onClick={() => handleSave(movie)}
+            >
+              Salvar
+            </button>
+            <Link
+              className="trailer-btn"
+              data-testid="trailer-btn"
+              to={`https://www.youtube.com/results?search_query=${movie.title}`}
+              target="_blank"
+              rel="external"
+            >
               Trailer
             </Link>
           </div>
