@@ -40,11 +40,11 @@ export const Container = styled.div`
 
   @media screen and (max-width: 35em) {
     img {
-        display: none;    
+      display: none;
     }
 
     p {
-        text-align: center;
+      text-align: center;
     }
   }
 `;
