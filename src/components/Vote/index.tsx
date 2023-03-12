@@ -27,11 +27,11 @@ function Vote({ average }: VoteProps) {
 
   if (ceil > 0) {
     const fill = Array.from({ length: a }).map((_, i) => (
-      <BsDropletFill size={30} data-testid="drop-fill"/>
+      <BsDropletFill size={30} data-testid="drop-fill" key={i}/>
     ));
     const half = b > 0 && <BsDropletHalf size={30} data-testid="drop-half"/>;
     const empty = Array.from({ length: 10 - ceil }).map((_, i) => (
-      <BsDroplet size={30} data-testid="drop-empty"/>
+      <BsDroplet size={30} data-testid="drop-empty" key={i}/>
     ));
 
     return (
@@ -45,7 +45,7 @@ function Vote({ average }: VoteProps) {
   }
 
   const divs = Array.from({ length: 10 }).map((_, i) => (
-    <BsDroplet size={30} data-testid="drop-empty"/>
+    <BsDroplet size={30} data-testid="drop-empty" key={i}/>
   ));
 
   return (

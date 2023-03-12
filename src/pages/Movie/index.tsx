@@ -108,6 +108,7 @@ export default function Movie() {
   return (
     <Container
       backgroundImg={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`}
+      data-testid="movie-container"
     >
       <div className="overlay">
         <div className="movie-info">
@@ -121,8 +122,8 @@ export default function Movie() {
             <Vote average={movie.vote_average} />
           </div>
           <div className="movie-buttons">
-            <button className="save-btn" onClick={() => handleSave(movie)}>Salvar</button>
-            <Link className="trailer-btn" to={`https://www.youtube.com/results?search_query=${movie.title}`} target="_blank" rel="external">
+            <button className="save-btn" data-testid="save-btn" onClick={() => handleSave(movie)}>Salvar</button>
+            <Link className="trailer-btn" data-testid="trailer-btn" to={`https://www.youtube.com/results?search_query=${movie.title}`} target="_blank" rel="external">
               Trailer
             </Link>
           </div>
