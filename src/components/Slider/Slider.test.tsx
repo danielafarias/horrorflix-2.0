@@ -1,4 +1,5 @@
 import { fireEvent, render, screen } from "@testing-library/react";
+
 import Slider from ".";
 
 describe("Slider", () => {
@@ -45,7 +46,7 @@ describe("Slider", () => {
     expect(rightButton).toBeInTheDocument();
 
     const motionContainer = screen.getByTestId("motion-container");
-    
+
     expect(motionContainer).toBeInTheDocument();
 
     const motionCard1 = screen.getByTestId("motion-card-631842");

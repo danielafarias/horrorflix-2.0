@@ -118,51 +118,52 @@ export const Container = styled.div`
     text-align: end;
 
     .info-btn {
-        display: flex;
-        align-items: center;
-        padding: 0.5rem;
-        font-weight: bold;
-        border: 2px solid var(--text2);
+      display: flex;
+      align-items: center;
+      padding: 0.5rem;
+      font-weight: bold;
+      border: 2px solid var(--text2);
+      color: var(--secondary);
+      background-color: var(--text2);
+      border-radius: 5px;
+      cursor: pointer;
+      justify-content: center;
+
+      svg {
         color: var(--secondary);
-        background-color: var(--text2);
-        border-radius: 5px;
-        cursor: pointer;
-        justify-content: center;
+        margin-right: 0.5rem;
+      }
+
+      &:hover {
+        background-color: transparent;
+        color: var(--text2);
 
         svg {
-            color: var(--secondary);
-            margin-right: 0.5rem;
+          color: var(--text2);
         }
-
-        &:hover {
-            background-color: transparent;
-            color: var(--text2);
-
-            svg {
-                color: var(--text2);
-            }
-        }
+      }
     }
 
-    .like-btn, .delete-btn {
-        border-radius: 9999px;
-        border: none;
-        padding: 0.5rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: transparent;
-        cursor: pointer;
+    .like-btn,
+    .delete-btn {
+      border-radius: 9999px;
+      border: none;
+      padding: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: transparent;
+      cursor: pointer;
 
+      svg {
+        color: var(--text2);
+      }
+
+      &:hover {
         svg {
-            color: var(--text2);
+          color: var(--primary);
         }
-
-        &:hover {
-            svg {
-                color: var(--primary);
-            }
-        }
+      }
     }
   }
 
