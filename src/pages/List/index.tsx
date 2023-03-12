@@ -1,8 +1,12 @@
 import { useEffect, useState } from "react";
+
 import Loader from "../../components/Loader";
 import Slider from "../../components/Slider";
+
 import { Container, EmptyContainer } from "./styles";
+
 import loader from "../../assets/img/loader.gif";
+
 interface MovieType {
   title: string;
   imagePath: string;
@@ -32,8 +36,8 @@ export default function List() {
   if (loading === false && movies.length === 0) {
     return (
       <EmptyContainer>
-          <span>Lista vazia</span>
-          <img src={loader} alt="Empty" />
+        <span>Lista vazia</span>
+        <img src={loader} alt="Empty" />
       </EmptyContainer>
     );
   }
