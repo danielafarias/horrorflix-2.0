@@ -121,7 +121,7 @@ export default function Slider({ sliderArray, hasSaved = false, setLoading }: Sl
                     </Link>
                     {
                       hasSaved ? (
-                      <button className="like-btn" data-testid={`like-btn-${obj.id}`} onClick={() => handleDelete(obj.id)}>
+                      <button className="delete-btn" data-testid={`delete-btn-${obj.id}`} onClick={() => handleDelete(obj.id)}>
                         <CgClose size={25} />
                       </button>
                       ) : (

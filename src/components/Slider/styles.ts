@@ -144,7 +144,7 @@ export const Container = styled.div`
         }
     }
 
-    .like-btn {
+    .like-btn, .delete-btn {
         border-radius: 9999px;
         border: none;
         padding: 0.5rem;
