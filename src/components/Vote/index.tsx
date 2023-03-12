@@ -13,46 +13,45 @@ interface VoteProps {
 function Vote({ average }: VoteProps) {
   const arrayAverage = average.toString().split(".");
   const a = Number(arrayAverage[0]);
-  const b = Number(arrayAverage[1][0]);
+  const b = arrayAverage[1] ? Number(arrayAverage[1][0]) : 0;
   const ceil = Math.ceil(Number(`${a}.${b}`));
+
+  const tooltip = (
+    <span className="tooltiptext">
+      <div>
+        <BsFillStarFill size={15} />
+        {`${a}.${b}`.replace(".", ",")}
+      </div>
+    </span>
+  );
 
   if (ceil > 0) {
     const fill = Array.from({ length: a }).map((_, i) => (
-      <BsDropletFill size={30} />
+      <BsDropletFill size={30} data-testid="drop-fill"/>
     ));
-    const half = b > 0 && <BsDropletHalf size={30} />;
+    const half = b > 0 && <BsDropletHalf size={30} data-testid="drop-half"/>;
     const empty = Array.from({ length: 10 - ceil }).map((_, i) => (
-      <BsDroplet size={30} />
+      <BsDroplet size={30} data-testid="drop-empty"/>
     ));
 
     return (
-      <Container>
+      <Container data-testid="vote-container">
         {fill}
         {half}
         {empty}
-        <span className="tooltiptext">
-          <div>
-            <BsFillStarFill size={15} />
-            {`${a}.${b}`.replace(".", ",")}
-          </div>
-        </span>
+        {tooltip}
       </Container>
     );
   }
 
   const divs = Array.from({ length: 10 }).map((_, i) => (
-    <BsDroplet size={30} />
+    <BsDroplet size={30} data-testid="drop-empty"/>
   ));
 
   return (
-    <Container>
+    <Container data-testid="vote-container">
       {divs}
-      <span className="tooltiptext">
-        <div>
-          <BsFillStarFill size={15} />
-          {`${a}.${b}`.replace(".", ",")}
-        </div>
-      </span>
+      {tooltip}
     </Container>
   );
 }
