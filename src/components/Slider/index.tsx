@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { MdArrowBackIosNew, MdArrowForwardIos } from "react-icons/md";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 import { FaHeart } from "react-icons/fa";
+import { CgClose } from "react-icons/cg";
 
 import { motion } from "framer-motion";
 
@@ -15,9 +16,11 @@ interface SliderArrayType {
 
 interface SliderProps {
   sliderArray: SliderArrayType[];
+  hasSaved?: boolean; 
+  setLoading?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default function Slider({ sliderArray }: SliderProps) {
+export default function Slider({ sliderArray, hasSaved = false, setLoading }: SliderProps) {
   const [width, setWidth] = useState(0);
   const dragSlider = useRef<HTMLDivElement>(null);
 
@@ -43,6 +46,39 @@ export default function Slider({ sliderArray }: SliderProps) {
       }
     }
   }, [dragSlider, sliderArray]);
+
+  function handleSave(movie: SliderArrayType) {
+
+    const localList = localStorage.getItem("@horrorflix");
+
+    let favoriteList = (localList !== null && localList !== undefined) ? JSON.parse(localList) : [];
+
+    const hasMovie = favoriteList.some((item: SliderArrayType) => item.id === movie.id);
+
+    if (hasMovie) {
+      alert("Já existe");
+      return;
+    }
+
+    favoriteList.push(movie);
+    localStorage.setItem("@horrorflix", JSON.stringify(favoriteList));
+
+    alert("Filme salvo")
+  }
+
+  function handleDelete(id: number) {
+    setLoading && setLoading(true);
+
+    const localList = localStorage.getItem("@horrorflix");
+
+    let favoriteList = (localList !== null && localList !== undefined) ? JSON.parse(localList) : [];
+
+    const deletedList = favoriteList.filter((item: SliderArrayType) => item.id !== id);
+
+    localStorage.setItem("@horrorflix", JSON.stringify(deletedList));
+
+    alert("Filme excluído");
+  }
 
   return (
     <Container>
@@ -83,9 +119,17 @@ export default function Slider({ sliderArray }: SliderProps) {
                       <AiOutlineInfoCircle size={20} />
                       Informações
                     </Link>
-                    <button className="like-btn" data-testid={`like-btn-${obj.id}`}>
-                      <FaHeart size={25} />
-                    </button>
+                    {
+                      hasSaved ? (
+                      <button className="like-btn" data-testid={`like-btn-${obj.id}`} onClick={() => handleDelete(obj.id)}>
+                        <CgClose size={25} />
+                      </button>
+                      ) : (
+                      <button className="like-btn" data-testid={`like-btn-${obj.id}`} onClick={() => handleSave(obj)}>
+                        <FaHeart size={25} />
+                      </button>
+                      )
+                    }
                   </div>
                 </div>
               </motion.div>

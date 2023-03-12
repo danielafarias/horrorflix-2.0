@@ -78,18 +78,24 @@ export default function Movie() {
   }
 
   function handleSave(movie: MovieType) {
+    const newMovie = {
+      title: movie.title,
+      imagePath: movie.poster_path,
+      id: movie.id,
+    };
+
     const localList = localStorage.getItem("@horrorflix");
 
     let favoriteList = (localList !== null && localList !== undefined) ? JSON.parse(localList) : [];
 
-    const hasMovie = favoriteList.some((item: MovieType) => item.id === movie.id);
+    const hasMovie = favoriteList.some((item: MovieType) => item.id === newMovie.id);
 
     if (hasMovie) {
       alert("Já existe");
       return;
     }
 
-    favoriteList.push(movie);
+    favoriteList.push(newMovie);
     localStorage.setItem("@horrorflix", JSON.stringify(favoriteList));
 
     alert("Filme salvo")
