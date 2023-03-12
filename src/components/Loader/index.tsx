@@ -1,4 +1,5 @@
 import { Container } from "./styles";
+
 import loader from "../../assets/img/loader.gif";
 
 function Loader() {
