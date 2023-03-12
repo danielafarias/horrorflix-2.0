@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { Link } from "react-router-dom";
 import Loader from "../../components/Loader";
 import Vote from "../../components/Vote";
@@ -51,6 +51,7 @@ interface MovieType {
 
 export default function Movie() {
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const [loading, setLoading] = useState(true);
   const [movie, setMovie] = useState<MovieType>({} as MovieType);
@@ -72,6 +73,7 @@ export default function Movie() {
       setLoading(false);
     } catch {
       setLoading(false);
+      navigate("/", { replace: true });
     }
   }
 
