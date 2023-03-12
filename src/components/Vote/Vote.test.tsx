@@ -1,10 +1,11 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+
 import Vote from ".";
 
 describe("Vote", () => {
   test("renders all icons in component", async () => {
-    render(<Vote average={6.5}/>);
+    render(<Vote average={6.5} />);
 
     const dropEmpty = screen.getAllByTestId("drop-empty");
     const dropHalf = screen.getByTestId("drop-half");
@@ -25,7 +26,7 @@ describe("Vote", () => {
   });
 
   test("renders just empty icons in component", async () => {
-    render(<Vote average={0}/>);
+    render(<Vote average={0} />);
 
     const dropEmpty = screen.getAllByTestId("drop-empty");
 
@@ -42,7 +43,7 @@ describe("Vote", () => {
   });
 
   test("renders just fill icons in component", async () => {
-    render(<Vote average={10}/>);
+    render(<Vote average={10} />);
 
     const dropFill = screen.getAllByTestId("drop-fill");
 
@@ -59,19 +60,19 @@ describe("Vote", () => {
   });
 
   test("renders all icons with correct styles", async () => {
-    render(<Vote average={6.5}/>);
+    render(<Vote average={6.5} />);
 
     const dropEmpty = screen.getAllByTestId("drop-empty");
     const dropHalf = screen.getByTestId("drop-half");
     const dropFill = screen.getAllByTestId("drop-fill");
 
-    expect(dropHalf).toHaveStyle('color: var(--primary);');
-    expect(dropEmpty[0]).toHaveStyle('color: var(--primary);');
-    expect(dropFill[0]).toHaveStyle('color: var(--primary);');
+    expect(dropHalf).toHaveStyle("color: var(--primary);");
+    expect(dropEmpty[0]).toHaveStyle("color: var(--primary);");
+    expect(dropFill[0]).toHaveStyle("color: var(--primary);");
   });
-  
+
   test("renders tooltip in component", async () => {
-    render(<Vote average={6.5}/>);
+    render(<Vote average={6.5} />);
 
     const container = screen.getByTestId("vote-container");
 
