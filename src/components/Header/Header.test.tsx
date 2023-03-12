@@ -8,6 +8,7 @@ describe("Header", () => {
 
     const logo = screen.getByTestId("logo");
     const listAnchor = screen.getByTestId("list");
+    
     expect(logo).toBeInTheDocument();
     expect(listAnchor).toBeInTheDocument();
   });

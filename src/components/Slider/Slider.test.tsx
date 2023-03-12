@@ -1,6 +1,11 @@
 import { fireEvent, render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
 import Slider from ".";
+
+beforeEach(() => {
+  localStorage.clear();
+});
 
 describe("Slider", () => {
   const sliderArray = [
@@ -144,5 +149,29 @@ describe("Slider", () => {
     const deleteButton = screen.getByTestId("delete-btn-631842");
 
     expect(deleteButton).toBeInTheDocument();
+  });
+
+  test("should save movie and delete movie", async () => {
+    render(<Slider sliderArray={sliderArray} />);
+
+    const likeButton = await screen.findByTestId("like-btn-631842");
+
+    userEvent.click(likeButton);
+
+    const savedMovie = localStorage.getItem("@horrorflix");
+
+    expect(savedMovie).toEqual(
+      '[{"id":631842,"title":"Batem à Porta","imagePath":"/xtLEm7icyupihsdhUYXJdQ7sKFo.jpg"}]'
+    );
+
+    render(<Slider sliderArray={sliderArray} hasSaved={true} />);
+
+    const deleteButton = screen.getByTestId("delete-btn-631842");
+
+    userEvent.click(deleteButton);
+
+    const savedMovie2 = localStorage.getItem("@horrorflix");
+
+    expect(savedMovie2).toEqual("[]");
   });
 });
