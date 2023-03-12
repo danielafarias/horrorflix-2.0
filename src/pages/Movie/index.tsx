@@ -77,6 +77,24 @@ export default function Movie() {
     }
   }
 
+  function handleSave(movie: MovieType) {
+    const localList = localStorage.getItem("@horrorflix");
+
+    let favoriteList = (localList !== null && localList !== undefined) ? JSON.parse(localList) : [];
+
+    const hasMovie = favoriteList.some((item: MovieType) => item.id === movie.id);
+
+    if (hasMovie) {
+      alert("Já existe");
+      return;
+    }
+
+    favoriteList.push(movie);
+    localStorage.setItem("@horrorflix", JSON.stringify(favoriteList));
+
+    alert("Filme salvo")
+  }
+
   if (loading) {
     return <Loader />;
   }
@@ -97,8 +115,8 @@ export default function Movie() {
             <Vote average={movie.vote_average} />
           </div>
           <div className="movie-buttons">
-            <button className="save-btn">Salvar</button>
-            <Link className="trailer-btn" to="#">
+            <button className="save-btn" onClick={() => handleSave(movie)}>Salvar</button>
+            <Link className="trailer-btn" to={`https://www.youtube.com/results?search_query=${movie.title}`} target="_blank" rel="external">
               Trailer
             </Link>
           </div>
