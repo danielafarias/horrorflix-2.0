@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+
 import Header from ".";
 
 describe("Header", () => {
@@ -26,7 +27,7 @@ describe("Header", () => {
     render(<Header />);
 
     const listAnchor = screen.getByTestId("list");
-    const favoriteIcon = screen.getByTestId("favorite-icon")
+    const favoriteIcon = screen.getByTestId("favorite-icon");
 
     expect(listAnchor.getAttribute("href")).toBe("/lista");
     expect(listAnchor.getAttribute("class")).toBe("list");
@@ -41,7 +42,7 @@ describe("Header", () => {
 
     expect(logo).toHaveStyle("font-size: 2.5rem");
     expect(logo).toHaveStyle("color: var(--primary)");
-    expect(logo).toHaveStyle("font-family: 'Creepster',cursive");
+    expect(logo).toHaveStyle('font-family: "Creepster",cursive');
   });
 
   test("renders list anchor with correct style", async () => {
