@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
-import api from "../../services/api";
-import { Container } from "./styles";
+
 import Slider from "../../components/Slider";
 import Loader from "../../components/Loader";
+
+import { Container } from "./styles";
+
+import api from "../../services/api";
 
 interface MovieType {
   adult: boolean;
