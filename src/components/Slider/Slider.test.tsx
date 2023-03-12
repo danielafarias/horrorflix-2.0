@@ -136,4 +136,12 @@ describe("Slider", () => {
 
     expect(motionContainer.scrollLeft).toBe(210);
   });
+
+  test("renders delete button", async () => {
+    render(<Slider sliderArray={sliderArray} hasSaved={true} />);
+
+    const deleteButton = screen.getByTestId("delete-btn-631842");
+
+    expect(deleteButton).toBeInTheDocument();
+  });
 });
