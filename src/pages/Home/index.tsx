@@ -63,7 +63,7 @@ export default function Home() {
   }
 
   if (loading) {
-    return <Loader />;
+    return <Loader text="Carregando" alt="Loading" />;
   }
 
   return (

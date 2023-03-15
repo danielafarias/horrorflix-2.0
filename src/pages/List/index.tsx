@@ -3,9 +3,7 @@ import { useEffect, useState } from "react";
 import Loader from "../../components/Loader";
 import Slider from "../../components/Slider";
 
-import { Container, EmptyContainer } from "./styles";
-
-import loader from "../../assets/img/loader.gif";
+import { Container } from "./styles";
 
 interface MovieType {
   title: string;
@@ -30,15 +28,12 @@ export default function List() {
   }, [loading]);
 
   if (loading) {
-    return <Loader />;
+    return <Loader text="Carregando" alt="Loading" />;
   }
 
   if (loading === false && movies.length === 0) {
     return (
-      <EmptyContainer>
-        <span>Lista vazia</span>
-        <img src={loader} alt="Empty" />
-      </EmptyContainer>
+      <Loader text="Lista vazia" alt="Empty" />
     );
   }
 

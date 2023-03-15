@@ -111,7 +111,7 @@ export default function Movie() {
   }
 
   if (loading) {
-    return <Loader />;
+    return <Loader text="Carregando" alt="Loading" />;
   }
 
   return (

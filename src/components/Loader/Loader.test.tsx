@@ -3,8 +3,8 @@ import { render, screen } from "@testing-library/react";
 import Loader from ".";
 
 describe("Loader", () => {
-  test("renders all items in component", async () => {
-    render(<Loader />);
+  test("renders items in component when loading", async () => {
+    render(<Loader text="Carregando" alt="Loading" />);
 
     const text = screen.getByText("Carregando");
     const image = screen.getByAltText("Loading");
@@ -13,8 +13,18 @@ describe("Loader", () => {
     expect(image).toBeInTheDocument();
   });
 
+  test("renders items in component when empty", async () => {
+    render(<Loader text="Lista vazia" alt="Empty" />);
+
+    const text = screen.getByText("Lista vazia");
+    const image = screen.getByAltText("Empty");
+
+    expect(text).toBeInTheDocument();
+    expect(image).toBeInTheDocument();
+  });
+
   test("renders items with correct styles", async () => {
-    render(<Loader />);
+    render(<Loader text="Carregando" alt="Loading" />);
 
     const text = screen.getByText("Carregando");
 
