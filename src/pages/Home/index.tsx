@@ -33,6 +33,7 @@ interface SliderArrayType {
 export default function Home() {
   const [movies, setMovies] = useState<SliderArrayType[]>([]);
   const [loading, setLoading] = useState(true);
+  const [numPages, setNumPages] = useState(0);
 
   useEffect(() => {
     handleMovies();
@@ -56,6 +57,7 @@ export default function Home() {
       }));
 
       setMovies(formatted);
+      setNumPages(Math.ceil(formatted.length / 6));
       setLoading(false);
     } catch {
       setLoading(false);
@@ -66,15 +68,13 @@ export default function Home() {
     return <Loader text="Carregando" alt="Loading" />;
   }
 
-  return (
-    <Container>
-      <Slider sliderArray={movies.slice(0, 6)} />
-      {movies.length > 6 && movies.length >= 12 && (
-        <Slider sliderArray={movies.slice(6, 12)} />
-      )}
-      {movies.length > 12 && movies.length >= 18 && (
-        <Slider sliderArray={movies.slice(12, 18)} />
-      )}
-    </Container>
-  );
+  const sliders = [];
+
+  for (let i = 0; i < numPages; i++) {
+    sliders.push(
+      <Slider key={i} sliderArray={movies.slice(i * 6, i * 6 + 6)} />
+    );
+  }
+
+  return <Container>{sliders}</Container>;
 }
