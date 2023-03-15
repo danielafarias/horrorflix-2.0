@@ -106,11 +106,16 @@ export default function Home() {
         <Slider key={index} sliderArray={movies} />
       ))}
 
-      <button className="paginate-button" onClick={() => setPage(page + 1)}>
+      <button
+        className="paginate-button"
+        data-testid="paginate-button"
+        onClick={() => setPage(page + 1)}
+      >
         <BsPlusCircleFill size={50} />
       </button>
       <button
         className="top-button"
+        data-testid="top-button"
         style={{ display: isVisible ? "block" : "none" }}
         onClick={scrollToTop}
       >
