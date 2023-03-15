@@ -1,10 +1,7 @@
 import { useEffect, useState } from "react";
-
 import Slider from "../../components/Slider";
 import Loader from "../../components/Loader";
-
 import { Container } from "./styles";
-
 import api from "../../services/api";
 
 interface MovieType {
@@ -31,13 +28,15 @@ interface SliderArrayType {
 }
 
 export default function Home() {
-  const [movies, setMovies] = useState<SliderArrayType[]>([]);
+  const [rawMovies, setRawMovies] = useState<MovieType[]>([]);
+  const [renderMovies, setRenderMovies] = useState<SliderArrayType[][]>([]);
   const [loading, setLoading] = useState(true);
   const [numPages, setNumPages] = useState(0);
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
     handleMovies();
-  }, []);
+  }, [page]);
 
   async function handleMovies() {
     try {
@@ -46,35 +45,45 @@ export default function Home() {
           api_key: "3c00eaa45868cd68c6653fa2a92cdbf6",
           language: "pt-BR",
           with_genres: 27,
-          page: 1,
+          page: page,
         },
       });
 
-      const formatted = response.data.results.map((res: MovieType) => ({
-        id: res.id,
-        title: res.title,
-        imagePath: res.poster_path,
-      }));
-
-      setMovies(formatted);
-      setNumPages(Math.ceil(formatted.length / 6));
+      setRawMovies([...rawMovies, ...response.data.results]);
+      setNumPages(
+        Math.ceil((rawMovies.length + response.data.results.length) / 6)
+      );
       setLoading(false);
     } catch {
       setLoading(false);
     }
   }
 
+  useEffect(() => {
+    const formatted = [];
+
+    for (let i = 0; i < numPages; i++) {
+      formatted.push(
+        rawMovies.slice(i * 6, i * 6 + 6).map((res: MovieType) => ({
+          id: res.id,
+          title: res.title,
+          imagePath: res.poster_path,
+        }))
+      );
+    }
+    setRenderMovies(formatted);
+  }, [rawMovies, numPages]);
+
   if (loading) {
     return <Loader text="Carregando" alt="Loading" />;
   }
 
-  const sliders = [];
-
-  for (let i = 0; i < numPages; i++) {
-    sliders.push(
-      <Slider key={i} sliderArray={movies.slice(i * 6, i * 6 + 6)} />
-    );
-  }
-
-  return <Container>{sliders}</Container>;
+  return (
+    <Container>
+      {renderMovies.map((movies, index) => (
+        <Slider key={index} sliderArray={movies} />
+      ))}
+      <button onClick={() => setPage(page + 1)}>Clique</button>
+    </Container>
+  );
 }
