@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react";
+import { BsPlusCircleFill, BsFillArrowUpCircleFill } from "react-icons/bs";
+
 import Slider from "../../components/Slider";
 import Loader from "../../components/Loader";
+
 import { Container } from "./styles";
+
 import api from "../../services/api";
 
 interface MovieType {
@@ -30,13 +34,23 @@ interface SliderArrayType {
 export default function Home() {
   const [rawMovies, setRawMovies] = useState<MovieType[]>([]);
   const [renderMovies, setRenderMovies] = useState<SliderArrayType[][]>([]);
+
   const [loading, setLoading] = useState(true);
+  const [isVisible, setIsVisible] = useState(false);
+
   const [numPages, setNumPages] = useState(0);
   const [page, setPage] = useState(1);
 
   useEffect(() => {
     handleMovies();
   }, [page]);
+
+  function scrollToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }
 
   async function handleMovies() {
     try {
@@ -78,12 +92,30 @@ export default function Home() {
     return <Loader text="Carregando" alt="Loading" />;
   }
 
+  window.addEventListener("scroll", () => {
+    if (window.pageYOffset > 300) {
+      setIsVisible(true);
+    } else {
+      setIsVisible(false);
+    }
+  });
+
   return (
     <Container>
       {renderMovies.map((movies, index) => (
         <Slider key={index} sliderArray={movies} />
       ))}
-      <button onClick={() => setPage(page + 1)}>Clique</button>
+
+      <button className="paginate-button" onClick={() => setPage(page + 1)}>
+        <BsPlusCircleFill size={50} />
+      </button>
+      <button
+        className="top-button"
+        style={{ display: isVisible ? "block" : "none" }}
+        onClick={scrollToTop}
+      >
+        <BsFillArrowUpCircleFill size={50} />
+      </button>
     </Container>
   );
 }
